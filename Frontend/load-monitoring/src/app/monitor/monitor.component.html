@@ -1,0 +1,26 @@
+
+<div class="monitor-container">
+    <div>
+        <app-statistics></app-statistics>
+        <div #graph id="graph" (window:resize)="onResize()"></div>
+        <nav class="parameters-container">
+            <div>
+                <label>Window Size (min):
+                    <input [(ngModel)]="windowSize">
+                </label>
+                <button (click)="updateWindow()">Resize</button>
+            </div>
+            <div>
+                <label>Alert Threshold:
+                    <input [(ngModel)]="alertThreshold">
+                </label>
+                <button (click)="updateThreshold()">Apply</button>
+            </div>
+        </nav>
+    </div>
+    <div>
+        <app-messages></app-messages>
+    </div> 
+    
+</div>
+

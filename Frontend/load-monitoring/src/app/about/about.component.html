@@ -1,0 +1,40 @@
+<div>
+    <h3 font="bold">What it is ? </h3>
+    <p>Create a simple web application that monitors load average on your machine:</p>
+    <ul>
+        <li>Collect the load averages of your system (see examples below)</li>
+        <li>Display in the application the key statistics as well as a history of load 
+          over the past 10 minutes in 10s intervals. We’d 
+          suggest a graphical representation like a timeseries. Make it easy for the end-user to 
+          picture the situation!
+        </li>
+        <li>Make sure a user can keep the web page open and monitor the load on their machine.</li>
+        <li>Whenever the load for the past 2 minutes exceeds 1 on average, add a message saying that "High load generated an alert - load = value, triggered at time"</li>
+        <li>Whenever the load average drops again below 1 on average for the past 2 minutes, Add another message explaining when the alert recovered.</li>
+        <li>Make sure all messages showing when alerting thresholds are crossed remain visible on the page for historical reasons.</li>
+        <li> Write a test for the alerting logic</li>
+        <li>Explain how you’d improve on this application design</li>
+        <li>This exercise is oriented towards showcasing your frontend skills, there is no need for advanced backends capable of persisting data</li>
+      </ul>
+
+      <h3> Personal Notes </h3>
+
+      <p>The application gets one load data every 10 minutes from the flask service.</p> 
+      <p>If the flask service has not been on for long enough prior to loading the application, there will not be anough data to 
+        fill the window so the data will just keep being appended to the graph until the window size is reached. After, the window 
+        will start sliding to allow new data to come in. 
+      </p>
+      <p> By default, the window spans 10 minutes or 10 * 6 = 60 points but this can be modifies in the "Window Size" inbox 
+          below the graph. Also, the default value for the alert threshold is 1 but this can also be modified, for instance 
+          decreasing this value is a good way of testing the feature (as a average value of 1 is not necessarily reached very often ...).
+      </p>
+      <p>
+        The alert is based on the average of the last 2 minutes, if there are not enough data - let's say, we just turned the service on - 
+        we will consider the max(available points, 2 min points).
+      </p>
+      <p>Above the graph are some basic statistics of the current data being displayed. </p>
+      <p>Finally, one note on the backend. From the moment it's on it will store one value of the laod in the database on every 
+        10 secondes inteval. If it has not been called for 15 minutes or more it will stopped loading data until it is called again.
+        All the stored data are cleared if older than 24 hours. 
+      </p>
+</div>

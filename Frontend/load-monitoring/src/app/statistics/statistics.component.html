@@ -1,0 +1,23 @@
+
+<ul class="statistic-container">
+  <label> Average
+    <div align="center" [ngClass]="{'red':averageTrend==-1, 'green': averageTrend==1, 'black': averageTrend==0}">
+      {{runningAverage | number : '1.2-2'}}
+    </div>
+  </label>
+  <label> Standart Deviation
+    <div  align="center" [ngClass]="{'red':stdTrend==-1, 'green': stdTrend==1, 'black': stdTrend==0}">
+        {{runningStd | number : '1.2-2'}}
+    </div>
+  </label>
+  <label> Minimum
+    <div  align="center" [ngClass]="{'red':minTrend==-1, 'green': minTrend==1, 'black': minTrend==0}">
+        {{runningMin | number : '1.2-2'}}
+    </div>
+  </label>
+  <label> Maximum
+    <div  align="center" [ngClass]="{'red':maxTrend==-1, 'green': maxTrend==1, 'black': maxTrend==0}">
+        {{runningMax | number : '1.2-2'}}
+    </div>
+  </label>
+</ul>

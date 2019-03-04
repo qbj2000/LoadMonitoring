@@ -1,0 +1,1 @@
+/Users/quentin/anaconda3/lib/python3.7/encodings/cp1258.py
