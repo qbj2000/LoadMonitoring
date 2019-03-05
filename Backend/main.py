@@ -1,5 +1,5 @@
 import time
-from flask import Flask, jsonify, Response, redirect
+from flask import Flask, jsonify, Response, redirect, render_template
 import os, multiprocessing
 from datetime import datetime, timedelta
 from threading import Thread
@@ -70,7 +70,7 @@ def clean_db():
     except:
         db.session.rollback()
 
-def auto_load():
+def auto_load(_db=db, ):
     """
     When first called after the service is on, this will start getting a new value of load every 10s
     and whenever the function is called afterwards it will return the last value fetched
@@ -79,18 +79,18 @@ def auto_load():
     :return:
     """
     global last_call_time, data_getter_running
-    print ("Process load getter starts running")
+    print("Process load getter starts running")
     try:
         while time.time() < last_call_time + MAX_INACTIVE_LOOP_TIME:
             cpus = multiprocessing.cpu_count()
             avg = os.getloadavg()[0] / cpus
             now = datetime.utcnow()
             load = Load(time=now, value=avg)
-            db.session.add(load)
-            db.session.commit()
+            _db.session.add(load)
+            _db.session.commit()
             time.sleep(10)
     except:
-        print ("Unexpectd error in the data getter process occured ... ")
+        print("Unexpectd error in the data getter process occured ... ")
     finally:
         data_getter_running = False
 

@@ -31,7 +31,7 @@ def test_client():
         ctx = app.app_context()
         ctx.push()
 
-        yield testing_client, db  # this is where the testing happens!
+        yield testing_client, db, Load  # this is where the testing happens!
 
         ctx.pop()
 

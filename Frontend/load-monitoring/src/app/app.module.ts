@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+// import { Routes, RouterModule } from '@angular/router';
 import { NgModule} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; 
 import { PlotlyModule } from 'angular-plotly.js';
@@ -18,6 +19,11 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { DateService } from './date.service'
 import { NavComponent } from './nav/nav.component';
 
+// const routes: Routes = [
+//   {path: '', component: MonitorComponent},
+//   {path: 'about', component: AboutComponent},
+// ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,10 +36,11 @@ import { NavComponent } from './nav/nav.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     PlotlyModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
+
   ],
   providers: [LoadService, DatePipe, MessageService, DateService],
   bootstrap: [AppComponent]
